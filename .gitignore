@@ -1,3 +1,6 @@
+.idea
 venv
 build
 dist
+Output
+*.iss
