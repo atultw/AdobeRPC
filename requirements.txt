@@ -1,0 +1,12 @@
+altgraph==0.17
+future==0.18.2
+pefile==2019.4.18
+psutil==5.8.0
+pyinstaller==4.2
+pyinstaller-hooks-contrib==2020.11
+pypiwin32==223
+pypresence==4.2.0
+pywin32==300
+pywin32-ctypes==0.2.0
+win10toast==0.9
+WMI==1.5.1

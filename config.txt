@@ -1,0 +1,22 @@
+[
+    {
+        'exe': 'adobe premiere pro',
+        'name': 'Premiere Pro',
+        'show_title': True
+    },
+    {
+        'exe': 'photoshop',
+        'name': 'Photoshop',
+        'show_title': True
+    },
+    {
+        'exe': 'afterfx',
+        'name': 'Firefox',
+        'show_title': True
+    },
+    {
+        'exe': 'lol',
+        'name': 'Zoom',
+        'show_title': True
+    }
+]
