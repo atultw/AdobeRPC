@@ -1,3 +1,4 @@
+import os
 import tkinter as Tkinter
 from tkinter import messagebox
 
@@ -9,6 +10,10 @@ def settoggle():
         main.toggle = False
     elif not main.toggle:
         main.toggle = True
+
+
+def configopen():
+    os.startfile('config.txt')
 
 
 class App:
@@ -26,12 +31,18 @@ class App:
         txt1 = Tkinter.Label(text='AdobeRPC by a2lya', padx='20', pady='20')
         txt1.pack()
 
-        btn = Tkinter.Button(self.top, text="Toggle on/off", command=self.tg, padx='20', pady='20', background='#29d1e3')
+        btn = Tkinter.Button(self.top, text="Toggle on/off", command=self.tg, padx='20', pady='20',
+                             background='#29d1e3')
         btn.pack()
 
         txt2 = Tkinter.Label(textvariable=self.status, background='#00ffff', padx='20', pady='20')
         txt2.pack()
 
+        btn = Tkinter.Button(self.top, text="Open Configuration", command=configopen, padx='20', pady='20')
+        btn.pack()
+
+        self.top.iconbitmap('favicon.ico')
+        self.top.protocol("WM_DELETE_WINDOW", self.top.iconify)
         self.top.mainloop()
 
     def tg(self):
@@ -41,7 +52,7 @@ class App:
 
     def refresh(self):
         main.update()
-        self.top.after(15000, self.refresh)
+        self.top.after(5000, self.refresh)
 
 
 app = App()

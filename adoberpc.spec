@@ -4,9 +4,10 @@ block_cipher = None
 
 
 a = Analysis(['adoberpc.pyw'],
-             pathex=['C:\\Users\\Atulya\\dev\\videoConferenceRPC'],
+             pathex=['C:\\Users\\Atulya\\dev\\AdobeRPC'],
              binaries=[],
-             datas=[],
+             datas=[('config.txt', '.'),
+                    ('favicon.ico', '.')],
              hiddenimports=[],
              hookspath=[],
              runtime_hooks=[],
@@ -26,6 +27,7 @@ exe = EXE(pyz,
           bootloader_ignore_signals=False,
           strip=False,
           upx=True,
+          icon='favicon.ico',
           console=False )
 coll = COLLECT(exe,
                a.binaries,

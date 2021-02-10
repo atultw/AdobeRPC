@@ -15,8 +15,18 @@
         'show_title': True
     },
     {
-        'exe': 'lol',
-        'name': 'Zoom',
+        'exe': 'illustrator',
+        'name': 'Illustrator',
+        'show_title': True
+    },
+    {
+        'exe': 'audition',
+        'name': 'Audition',
+        'show_title': True
+    },
+    {
+        'exe': 'acrobat',
+        'name': 'Adobe Acrobat',
         'show_title': True
     }
 ]

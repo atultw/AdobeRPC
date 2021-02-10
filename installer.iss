@@ -14,8 +14,9 @@
 ; ADDED FOR SIGNING
 
 SignTool=MsSign $f
+WizardSmallImageFile=small_img.bmp
+WizardImageFile=small_img.bmp
 
-; SignedUninstaller=yes
 ; END CUSTOM PORTION
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
@@ -35,7 +36,7 @@ DisableProgramGroupPage=yes
 PrivilegesRequired=admin
 ; PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=adoberpc_beta1
-SetupIconFile=C:\Users\Atulya\dev\AdobeRPC\dist\adoberpc\cc.ico
+SetupIconFile=C:\Users\Atulya\dev\AdobeRPC\dist\adoberpc\favicon.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -60,6 +61,7 @@ Root: HKA; Subkey: "Software\Classes\Applications\{#MyAppExeName}\SupportedTypes
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
+Name: "{autoprograms}\{#MyAppName} Configuration"; Filename: "{app}\config.txt"
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 Name: "{commonstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 
