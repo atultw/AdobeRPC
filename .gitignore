@@ -1,7 +1,6 @@
-.idea
 venv
+Output
 build
 dist
-Output
-installer
+.idea
 *.iss

@@ -11,7 +11,7 @@
     },
     {
         'exe': 'afterfx',
-        'name': 'Firefox',
+        'name': 'After Effects',
         'show_title': True
     },
     {
@@ -27,6 +27,11 @@
     {
         'exe': 'acrobat',
         'name': 'Adobe Acrobat',
+        'show_title': True
+    },
+        {
+        'exe': 'indesign',
+        'name': 'InDesign',
         'show_title': True
     }
 ]

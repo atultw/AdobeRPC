@@ -39,7 +39,7 @@ def clearpresence():
     client.rpclient = None
 
     client.timer = dict({
-        'app': None,
+        # 'app': None,
         'start': 0
     })
 
@@ -55,7 +55,7 @@ def update():
     if toggle:
         print('hi')
         appname = str(window())
-        print(appname + " preliminary")
+        print(appname + " detected")
         desc = win32gui.GetWindowText(win32gui.GetForegroundWindow())
         cid = ""
         params = {}
@@ -64,6 +64,8 @@ def update():
             if str(appname) == str(i['exe']):
                 for n in ids.lst:
                     if appname == n['exe']:
+                        friendlyname = i['name']
+
                         cid = n['clientid']
                         params['large_image'] = n['large_image']
 
@@ -73,44 +75,51 @@ def update():
                         if client.timer['app'] != appname:
                             client.timer['start'] = time.time()
 
+                        print('the client timer is set to' + str(client.timer['app']))
+
                         params['start'] = client.timer['start']
+
+                        # Set app name to compare for next time, must be done before potential return
 
                         print(appname + " matched")
 
                         break
                 break
 
-        print(cid)
-
-        # Set app name to compare for next time, must be done before potential return
-        client.timer['app'] = appname
-
         if cid == "":
             clearpresence()
 
         else:
             if client.active_presence != cid:
-                print(str(Presence(cid)) + "expected")
+                print(client.active_presence + "expected")
                 clearpresence()
                 client.rpclient = Presence(cid)
                 client.rpclient.connect()
                 client.rpclient.update(**params)
-                print(str(client.rpclient) + 'updated new')
+                print(cid + 'updated new')
 
             if client.active_presence == cid:
-                client.rpclient.update(**params)
-                print(str(client.rpclient) + 'existing')
+                if params['start'] >= 1:
+                    client.rpclient.update(**params)
+                else:
+                    print('time was not valid')
+
+                print(client.active_presence + 'existing')
+
+            print(params['start'])
 
         client.active_presence = cid
+        client.timer['app'] = appname
 
         if params != '' and cid:
             if not client.notified:
                 toaster.show_toast("Adobe RPC",
-                                   "You're now using " + str(appname),
+                                   "You're now using " + str(friendlyname) if friendlyname else str(appname),
                                    icon_path="favicon.ico",
                                    duration=3,
                                    threaded=True)
                 print('nonempty')
+                print("")
                 client.notified = True
 
     return

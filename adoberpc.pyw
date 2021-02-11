@@ -1,5 +1,6 @@
 import os
-import tkinter as Tkinter
+import tkinter as tk
+from PIL import ImageTk, Image
 from tkinter import messagebox
 
 import main
@@ -18,41 +19,55 @@ def configopen():
 
 class App:
     def __init__(self):
-        self.top = Tkinter.Tk(screenName='AdobeRPC')
+
+        self.top = tk.Tk(screenName='AdobeRPC')
+        self.top.configure(background='#556066')
+
         self.refresh()
         self.top.title('AdobeRPC')
 
-        self.top.geometry('400x200')
+        self.top.geometry('310x500')
         self.top.resizable(width=0, height=0)
 
-        self.status = Tkinter.StringVar()
-        self.status.set(str(main.toggle))
+        self.status = tk.StringVar()
+        self.status.set("Currently Active")
 
-        txt1 = Tkinter.Label(text='AdobeRPC by a2lya', padx='20', pady='20')
-        txt1.pack()
+        canvas = tk.Canvas(bg="#556066", width=100, height=100)
+        canvas.pack()
+        img = Image.open("favicon.png")  # PIL solution
+        img = img.resize((100, 100), Image.ANTIALIAS)  # The (250, 250) is (height, width)
+        img = ImageTk.PhotoImage(img)  # convert to PhotoImage
+        image = canvas.create_image(62, 62, anchor='center', image=img)
+        # image.pack() # canvas objects do not use pack() or grid()
 
-        btn = Tkinter.Button(self.top, text="Toggle on/off", command=self.tg, padx='20', pady='20',
-                             background='#29d1e3')
-        btn.pack()
+        txt1 = tk.Label(text='AdobeRPC', font="Myriad 20", background='#fff', width=16)
 
-        txt2 = Tkinter.Label(textvariable=self.status, background='#00ffff', padx='20', pady='20')
-        txt2.pack()
+        btn = tk.Button(self.top, text="Toggle on/off", command=self.tg, background='#a6d1ff', font="Myriad", width=28)
 
-        btn = Tkinter.Button(self.top, text="Open Configuration", command=configopen, padx='20', pady='20')
-        btn.pack()
+        txt2 = tk.Label(textvariable=self.status, background='#b2cad1', font="Myriad", width=28)
+
+        btn2 = tk.Button(self.top, text="Open Configuration", command=configopen, font="Myriad", width=28)
 
         self.top.iconbitmap('favicon.ico')
+
+        for child in self.top.winfo_children():
+            child.grid_configure(padx=10, pady=10, ipadx='10', ipady='10')
+
         self.top.protocol("WM_DELETE_WINDOW", self.top.iconify)
         self.top.mainloop()
 
     def tg(self):
         settoggle()
-        self.status.set(str(main.toggle))
-        messagebox.showinfo("Info", "Discord rich presence is now " + str(main.toggle))
+        if main.toggle:
+            self.status.set('Currently active')
+        if not main.toggle:
+            self.status.set('Currently not updating')
+
+        messagebox.showinfo("Attention", "Discord rich presence is now " + str(main.toggle))
 
     def refresh(self):
         main.update()
-        self.top.after(5000, self.refresh)
+        self.top.after(15000, self.refresh)
 
 
 app = App()

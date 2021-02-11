@@ -1,5 +1,8 @@
 future==0.18.2
+Pillow==8.1.0
 psutil==5.8.0
+pypiwin32==223
 pypresence==4.2.0
+pywin32==300
 win10toast==0.9
 WMI==1.5.1
