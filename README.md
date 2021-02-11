@@ -16,3 +16,11 @@ There are two options how to install. The setup method is quick and effective.
 ### Compile Yourself
 1. Download the source code and extract it.
 2. cd into the directory and run ``pyinstaller pyinstall.spec``. The final exe will be in the ``/dist/adoberpc`` folder.
+
+## Demo
+
+
+![Demo of Discord side](https://i.imgur.com/1ocs4q9.png)
+![Demo of GUI](https://i.imgur.com/7ZeeURv.png)
+![Demo of Notification](https://i.imgur.com/qVhm8WY.png)
+
