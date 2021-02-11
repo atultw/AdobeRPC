@@ -1,7 +1,10 @@
 import os
+import sys
 import tkinter as tk
-from PIL import ImageTk, Image
+from datetime import datetime
 from tkinter import messagebox
+
+from PIL import ImageTk, Image
 
 import main
 
@@ -19,42 +22,42 @@ def configopen():
 
 class App:
     def __init__(self):
+        with open("logging/log" + datetime.now().strftime("%m%d%Y%H%M%S") + ".txt", 'w+') as sys.stdout:
+            self.top = tk.Tk(screenName='AdobeRPC')
+            self.top.configure(background='#556066')
 
-        self.top = tk.Tk(screenName='AdobeRPC')
-        self.top.configure(background='#556066')
+            self.refresh()
+            self.top.title('AdobeRPC')
 
-        self.refresh()
-        self.top.title('AdobeRPC')
+            self.top.geometry('310x500')
+            self.top.resizable(width=0, height=0)
 
-        self.top.geometry('310x500')
-        self.top.resizable(width=0, height=0)
+            self.status = tk.StringVar()
+            self.status.set("Currently Active")
 
-        self.status = tk.StringVar()
-        self.status.set("Currently Active")
+            canvas = tk.Canvas(bg="#556066", width=100, height=100)
+            canvas.pack()
+            img = Image.open("favicon.png")  # PIL solution
+            img = img.resize((100, 100), Image.ANTIALIAS)  # The (250, 250) is (height, width)
+            img = ImageTk.PhotoImage(img)  # convert to PhotoImage
+            image = canvas.create_image(62, 62, anchor='center', image=img)
+            # image.pack() # canvas objects do not use pack() or grid()
 
-        canvas = tk.Canvas(bg="#556066", width=100, height=100)
-        canvas.pack()
-        img = Image.open("favicon.png")  # PIL solution
-        img = img.resize((100, 100), Image.ANTIALIAS)  # The (250, 250) is (height, width)
-        img = ImageTk.PhotoImage(img)  # convert to PhotoImage
-        image = canvas.create_image(62, 62, anchor='center', image=img)
-        # image.pack() # canvas objects do not use pack() or grid()
+            txt1 = tk.Label(text='AdobeRPC', font="Myriad 20", background='#fff', width=16)
 
-        txt1 = tk.Label(text='AdobeRPC', font="Myriad 20", background='#fff', width=16)
+            btn = tk.Button(self.top, text="Toggle on/off", command=self.tg, background='#a6d1ff', font="Myriad", width=28)
 
-        btn = tk.Button(self.top, text="Toggle on/off", command=self.tg, background='#a6d1ff', font="Myriad", width=28)
+            txt2 = tk.Label(textvariable=self.status, background='#b2cad1', font="Myriad", width=28)
 
-        txt2 = tk.Label(textvariable=self.status, background='#b2cad1', font="Myriad", width=28)
+            btn2 = tk.Button(self.top, text="Open Configuration", command=configopen, font="Myriad", width=28)
 
-        btn2 = tk.Button(self.top, text="Open Configuration", command=configopen, font="Myriad", width=28)
+            self.top.iconbitmap('favicon.ico')
 
-        self.top.iconbitmap('favicon.ico')
+            for child in self.top.winfo_children():
+                child.grid_configure(padx=10, pady=10, ipadx='10', ipady='10')
 
-        for child in self.top.winfo_children():
-            child.grid_configure(padx=10, pady=10, ipadx='10', ipady='10')
-
-        self.top.protocol("WM_DELETE_WINDOW", self.top.iconify)
-        self.top.mainloop()
+            # self.top.protocol("WM_DELETE_WINDOW", self.top.iconify)
+            self.top.mainloop()
 
     def tg(self):
         settoggle()

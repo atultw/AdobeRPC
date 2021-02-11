@@ -4,3 +4,4 @@ build
 dist
 .idea
 *.iss
+log*.txt

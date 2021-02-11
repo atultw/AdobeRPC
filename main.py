@@ -1,3 +1,5 @@
+import sys
+from datetime import datetime
 from ctypes import windll
 import time
 
@@ -39,15 +41,16 @@ def clearpresence():
     client.rpclient = None
 
     client.timer = dict({
-        # 'app': None,
+        'app': None,
         'start': 0
     })
 
-    client.app = None
+    client.active_presence = None
 
     client.notified = False
 
     return
+
 
 
 def update():
@@ -88,10 +91,11 @@ def update():
 
         if cid == "":
             clearpresence()
+            return
 
         else:
             if client.active_presence != cid:
-                print(client.active_presence + "expected")
+                print(str(client.active_presence) + "expected")
                 clearpresence()
                 client.rpclient = Presence(cid)
                 client.rpclient.connect()
