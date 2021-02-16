@@ -1,5 +1,22 @@
 # AdobeRPC
-Discord rich presence for your Adobe apps
+Discord rich presence for your Adobe apps that *actually works*. Install and you're good to go!
+
+
+## Demo
+
+*There is a handy restart program button in the latest version*
+![Demo of Discord side](https://i.imgur.com/1ocs4q9.png)
+![Demo of GUI](https://i.imgur.com/7ZeeURv.png)
+![Demo of Notification](https://i.imgur.com/qVhm8WY.png)
+
+## Currently Supported Apps
+* Premiere Pro
+* After Effects
+* Illustrator
+* Photoshop
+* InDesign
+* Acrobat
+* More on the way
 
 ## How to use
 It's simple. Install once and it will update your presence whenever you open an Adobe app. **_As long as the window of the program exists_**, it will do its job. Don't close the window.
@@ -17,10 +34,4 @@ There are two options how to install. The setup method is quick and effective.
 1. Download the source code and extract it.
 2. cd into the directory and run ``pyinstaller pyinstall.spec``. The final exe will be in the ``/dist/adoberpc`` folder.
 
-## Demo
-
-
-![Demo of Discord side](https://i.imgur.com/1ocs4q9.png)
-![Demo of GUI](https://i.imgur.com/7ZeeURv.png)
-![Demo of Notification](https://i.imgur.com/qVhm8WY.png)
 
