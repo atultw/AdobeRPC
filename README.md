@@ -22,7 +22,7 @@ Discord rich presence for your Adobe apps that *actually works*. Install and you
 It's simple. Install once and it will update your presence whenever you open an Adobe app. **_As long as the window of the program exists_**, it will do its job. Don't close the window.
 
 ## Installation
-There are two options how to install. The setup method is quick and effective.
+There are two options to install. The setup method is quick and effective.
 
 ### Automatic Setup
 1. Download the installer from the Releases page, to the right. 
